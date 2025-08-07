@@ -1,0 +1,220 @@
+body {
+  background: #ffffff;
+  font-family: 'Open Sans', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+.header {
+  background: #fff;
+  border: 3px solid red;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 0 0 10px 10px;
+}
+
+.logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.horse {
+  height: 70px;
+  margin: 0 15px;
+}
+
+.horse.reverse {
+  transform: scaleX(-1);
+}
+
+.logo-text {
+  font-size: 2.4em;
+  color: #319c41;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.logo-palm {
+  font-size: 1.1em;
+  color: #f9b039;
+  margin: 0 4px;
+}
+
+.subtitle {
+  color: #d32f2f;
+  font-size: 1.2em;
+  margin-top: -8px;
+  font-weight: bold;
+}
+
+/* Yellow Banner */
+.yellow-banner {
+  background: #ffff4d;
+  border: 3px double red;
+  border-radius: 10px;
+  margin: 5px 8px;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.welcome-text {
+  font-size: 1.2em;
+  font-style: italic;
+  color: red;
+  font-weight: bold;
+}
+
+/* Live Result Box */
+.bluebox {
+  background: #7c97e8;
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 10px 0;
+  font-style: italic;
+  border: 3px solid blue;
+  border-radius: 10px;
+  margin: 5px 8px;
+}
+
+/* Info Bar */
+.infobar {
+  background: #c3e1f0;
+  color: #2b2b2b;
+  text-align: center;
+  padding: 8px 0;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 3px solid red;
+  border-radius: 10px;
+  margin: 5px 8px;
+}
+
+/* Results */
+.date-section {
+  background: #4caf50;
+  color: #fff;
+  margin-top: 13px;
+  border-radius: 2px;
+  box-shadow: 0 2px 6px #b9e7bc44;
+  overflow: hidden;
+}
+
+.date-header {
+  font-size: 1.3em;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0;
+  background: #388e3c;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  color: #333;
+  font-size: 1.05em;
+  margin-bottom: 7px;
+}
+
+.timerow th {
+  background: #fff95d;
+  color: #222;
+  font-weight: bold;
+  font-size: 1em;
+  padding: 5px 0;
+  border: 1px solid #ccc;
+}
+
+.number-row td {
+  background: #ffffff;
+  color: #000;
+  font-size: 1.15em;
+  font-weight: bold;
+}
+
+.digit-row td {
+  background: #f1fff0;
+  color: #2e7d32;
+  font-size: 1em;
+}
+
+.result-table th,
+.result-table td {
+  border: 1px solid #b8b8b8;
+  padding: 8px 6px;
+  text-align: center;
+}
+.scroll-text {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 1.2em;
+  font-style: italic;
+  color: red;
+  font-weight: bold;
+  animation: scroll-left 12s linear infinite;
+}
+
+@media (max-width: 768px) {
+  .logo-row {
+    flex-direction: column;
+  }
+
+  .horse {
+    height: 50px;
+    margin: 10px 0;
+  }
+
+  .logo-text {
+    font-size: 1.6em;
+    letter-spacing: 2px;
+  }
+
+  .subtitle {
+    font-size: 1em;
+    margin-top: 0;
+  }
+
+  .yellow-banner,
+  .bluebox,
+  .infobar {
+    font-size: 1em;
+    padding: 6px;
+    margin: 4px 6px;
+  }
+
+  .scroll-text {
+    font-size: 1em;
+  }
+
+  .date-header {
+    font-size: 1em;
+    padding: 6px 0;
+  }
+
+  .result-table {
+    font-size: 0.75em; /* Shrinks entire table */
+  }
+
+  .timerow th,
+  .result-table td {
+    padding: 3px 2px;
+    font-size: 0.75em;
+  }
+
+  .number-row td {
+    font-size: 0.85em;
+  }
+
+  .digit-row td {
+    font-size: 0.75em;
+  }
+}
