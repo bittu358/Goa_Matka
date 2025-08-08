@@ -12,33 +12,46 @@ html, body {
 }
 
 /* ===== Logo Header ===== */
-/* ===== Logo Header ===== */
 .logo-header {
   text-align: center;
-  background: #fff;
-  border: 3px solid red;
-  border-radius: 0 0 10px 10px;
-  padding: 2px; /* very small padding */
-}
-
-/* Smaller horse logo */
-.horse-logo-main {
-  width: 80%;   /* reduced from 80% */
-  max-width: 1500px;
-  height: auto;
-  display: block;
-  margin: 0 auto 2px auto;
-}
-
-/* Smaller golden logo below */
-.golden-logo-below {
-  width: 30%;   /* reduced from 60% */
-  max-width: 400px;
-  height: auto;
-  display: block;
+  background: #e7e9ed; /* Blue background to match the Live Result box */
+  color: #ffffff;      /* White text color */
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.5em;    /* Font size to match */
+  padding: 10px 0;
+  border: 3px solid rgb(240, 240, 250);
+  border-radius: 10px;
+  margin: 5px 8px;
+  max-width: 480px;
   margin: 0 auto;
 }
 
+/* Logo image styling - This can be kept or removed depending on your preference */
+.custom-logo-main {
+  width: 80%;
+  max-width: 300px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px; /* Adds space below the logo */
+}
+
+/* New styling for the text to match the blue box */
+.logo-text {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin: 0;
+  padding: 0;
+}
+
+.subtext {
+  color: #ffffff; /* Change subtext to white */
+  font-weight: 700;
+  font-size: 14px;
+  font-family: "Arial Black", Arial, sans-serif;
+  margin-top: 4px;
+}
 
 /* ===== Yellow Banner (Scrolling) ===== */
 .yellow-banner {
@@ -154,13 +167,9 @@ html, body {
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
-  .horse-logo-main {
+  .custom-logo-main {
     width: 85%;
     max-width: 400px;
-  }
-  .golden-logo-below {
-    width: 65%;
-    max-width: 250px;
   }
   .yellow-banner,
   .bluebox,
@@ -193,10 +202,17 @@ html, body {
 }
 
 @media (max-width: 420px) {
-  .horse-logo-main {
+  .custom-logo-main {
     max-width: 280px;
   }
-  .golden-logo-below {
-    max-width: 200px;
-  }
+}
+/* Add this new section to your style.css file */
+.loading-logo-container {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.loading-logo {
+    max-width: 150px; /* Adjust the size as needed */
+    height: auto;
 }

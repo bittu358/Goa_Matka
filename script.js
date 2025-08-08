@@ -34,7 +34,6 @@ function renderTables(data) {
     return new Date(parse(b)) - new Date(parse(a));
   });
 
-  // Match the format of your data exactly
   const times = [
     "10:00", "11:00", "12:00", "13:00",
     "14:00", "15:00", "16:00",
