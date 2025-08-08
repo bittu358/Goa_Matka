@@ -6,44 +6,39 @@ body {
   padding: 0;
 }
 
-/* ===== Header ===== */
-.header {
+html, body {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* ===== Logo Header ===== */
+/* ===== Logo Header ===== */
+.logo-header {
+  text-align: center;
   background: #fff;
   border: 3px solid red;
-  text-align: center;
-  padding: 10px 0;
   border-radius: 0 0 10px 10px;
+  padding: 2px; /* very small padding */
 }
 
-/* ===== Logo Container ===== */
-.logo-container {
-  text-align: center;
-  margin: 10px 0;
+/* Smaller horse logo */
+.horse-logo-main {
+  width: 40%;   /* reduced from 80% */
+  max-width: 250px;
+  height: auto;
+  display: block;
+  margin: 0 auto 2px auto;
 }
 
-.trimmed-logo {
+/* Smaller golden logo below */
+.golden-logo-below {
+  width: 30%;   /* reduced from 60% */
+  max-width: 150px;
+  height: auto;
   display: block;
   margin: 0 auto;
-  object-fit: contain;
-  background-color: transparent;
-  padding: 0;
 }
 
-/* Main horse logo */
-.main-logo {
-  width: 100%;
-  max-width: 750px;
-  height: auto;
-  clip-path: inset(3% 6% 3% 6%); /* trim white space */
-}
-
-/* Golden logo below */
-.golden-logo {
-  width: 60%; /* smaller size */
-  max-width: 400px;
-  margin-top: 8px;
-  clip-path: inset(6% 10% 6% 10%); /* tighter crop */
-}
 
 /* ===== Yellow Banner (Scrolling) ===== */
 .yellow-banner {
@@ -157,21 +152,16 @@ body {
   text-align: center;
 }
 
-/* ===== Mobile View ===== */
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
-  .logo-container {
-    margin: 8px 0;
+  .horse-logo-main {
+    width: 85%;
+    max-width: 400px;
   }
-
-  .main-logo {
-    max-width: 500px;
+  .golden-logo-below {
+    width: 65%;
+    max-width: 250px;
   }
-
-  .golden-logo {
-    width: 70%;
-    max-width: 320px;
-  }
-
   .yellow-banner,
   .bluebox,
   .infobar {
@@ -179,117 +169,34 @@ body {
     padding: 6px;
     margin: 4px 6px;
   }
-
   .scroll-text {
     font-size: 1em;
   }
-
   .date-header {
     font-size: 1em;
     padding: 6px 0;
   }
-
   .result-table {
     font-size: 0.75em;
   }
-
   .timerow th,
   .result-table td {
     padding: 3px 2px;
     font-size: 0.75em;
   }
-
   .number-row td {
     font-size: 0.85em;
   }
-
   .digit-row td {
     font-size: 0.75em;
   }
 }
-/* ===== Logo sizing update: horse ~+60%, golden ~+30% ===== */
-
-/* prevent horizontal scroll from large images */
-html, body {
-  box-sizing: border-box;
-  overflow-x: hidden;
-}
-
-/* container */
-.logo-container {
-  text-align: center;
-  margin: 8px 0;
-  padding: 0;
-}
-
-/* base logo rules */
-.trimmed-logo {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0;
-  background-color: transparent;
-  object-fit: contain;
-  box-sizing: border-box;
-}
-
-/* HORSE (main) logo — reduced to 35% */
-.main-logo {
-  width: 35%;
-  max-width: none;
-  height: auto;
-  margin-top: 8px;
-  margin-bottom: 6px;
-  clip-path: inset(3% 5% 3% 5%);
-  -webkit-clip-path: inset(3% 5% 3% 5%);
-}
-
-/* GOLDEN logo — reduced to 35% */
-.golden-logo {
-  width: 35%;
-  max-width: none;
-  height: auto;
-  margin-top: 8px;
-  margin-bottom: 6px;
-  clip-path: inset(4% 8% 4% 8%);
-  -webkit-clip-path: inset(4% 8% 4% 8%);
-}
-
-
-/* If overlap is too heavy, add class="logo-container overlap-less" to HTML to reduce pull-up */
-.logo-container.overlap-less .golden-logo {
-  margin-top: -12px;
-}
-
-/* ===== Responsive adjustments ===== */
-@media (max-width: 768px) {
-  .main-logo {
-    width: 86%;
-    max-width: 640px;
-    max-height: 38vh;
-    clip-path: inset(3.5% 6% 3.5% 6%);
-    -webkit-clip-path: inset(3.5% 6% 3.5% 6%);
-  }
-
-  .golden-logo {
-    width: 68%;
-    max-width: 420px;
-    max-height: 18vh;
-    margin-top: -22px;
-    clip-path: inset(5% 9% 5% 9%);
-    -webkit-clip-path: inset(5% 9% 5% 9%);
-  }
-}
 
 @media (max-width: 420px) {
-  .main-logo {
-    width: 92%;
-    max-height: 30vh;
+  .horse-logo-main {
+    max-width: 280px;
   }
-
-  .golden-logo {
-    width: 78%;
-    max-height: 16vh;
-    margin-top: -12px;
+  .golden-logo-below {
+    max-width: 200px;
   }
 }
