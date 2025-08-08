@@ -32,8 +32,8 @@ html, body {
 
 /* Smaller golden logo below */
 .golden-logo-below {
-  width: 60%;   /* reduced from 60% */
-  max-width: 1000px;
+  width: 30%;   /* reduced from 60% */
+  max-width: 400px;
   height: auto;
   display: block;
   margin: 0 auto;
