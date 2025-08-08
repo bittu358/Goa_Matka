@@ -164,6 +164,7 @@ html, body {
   background: #f9fcf9;
   color: #0a0b0a;
   font-size: 1em;
+  font-weight: bold;
 }
 
 .result-table th,
