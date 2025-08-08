@@ -236,11 +236,11 @@ html, body {
 /* HORSE (main) logo — increased size */
 .main-logo {
   width: 105%;            /* bigger presence */
-  max-width: 1500px;     /* allow more room on large screens */
+  max-width: 1200px;     /* allow more room on large screens */
   height: auto;
-  max-height: 75vh;
-  margin-top: 15px;
-  margin-bottom: 9px;
+  max-height: 55vh;
+  margin-top: 10px;
+  margin-bottom: 8px;
   clip-path: inset(3% 5% 3% 5%);
   -webkit-clip-path: inset(3% 5% 3% 5%);
 }
