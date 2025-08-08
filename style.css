@@ -233,29 +233,28 @@ html, body {
   box-sizing: border-box;
 }
 
-/* HORSE (main) logo — increased size */
+/* HORSE (main) logo — reduced to 35% */
 .main-logo {
-  width: 105%;            /* bigger presence */
-  max-width: 1200px;     /* allow more room on large screens */
+  width: 35%;
+  max-width: none;
   height: auto;
-  max-height: 55vh;
-  margin-top: 10px;
-  margin-bottom: 8px;
+  margin-top: 8px;
+  margin-bottom: 6px;
   clip-path: inset(3% 5% 3% 5%);
   -webkit-clip-path: inset(3% 5% 3% 5%);
 }
 
-/* GOLDEN logo — ~30% larger */
+/* GOLDEN logo — reduced to 35% */
 .golden-logo {
-  width: 52%;            /* moderately larger */
-  max-width: 520px;
+  width: 35%;
+  max-width: none;
   height: auto;
-  max-height: 22vh;
-  margin-top: -30px;     /* negative to keep a small overlap; reduce if too strong */
+  margin-top: 8px;
   margin-bottom: 6px;
-  clip-path: inset(4% 8% 4% 8%);   /* tighter crop for white edges */
+  clip-path: inset(4% 8% 4% 8%);
   -webkit-clip-path: inset(4% 8% 4% 8%);
 }
+
 
 /* If overlap is too heavy, add class="logo-container overlap-less" to HTML to reduce pull-up */
 .logo-container.overlap-less .golden-logo {
