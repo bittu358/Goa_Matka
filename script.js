@@ -1,30 +1,114 @@
 // ===== Replace with your own published Google Sheet CSV lin
 
 document.addEventListener("DOMContentLoaded", function () {
-  const csvFile = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSWT5c0Ny9m7CSPhv5Y6gRpqL6l9GRul4KXKNELYRp0AK-GflTPbAMZ0_FqjrQdLsFudsoRE5mhP22d/pub?output=csv"; 
+  const csvFile = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSWT5c0Ny9m7CSPhv5Y6gRpqL6l9GRul4KXKNELYRp0AK-GflTPbAMZ0_FqjrQdLsFudsoRE5mhP22d/pub?output=csv";
 
-  fetch(csvFile)
-    .then(res => res.text())
-    .then(text => {
-      const rows = parseCSV(text);
+// ===== Replace with your own published Google Sheet CSV lin
 
-      // Apply rules and group by date
-      const groupedData = rows.reduce((acc, row) => {
-        const date = row.Date;
-        if (!acc[date]) {
-          acc[date] = [];
-        }
-        acc[date].push({
-          Time: row.Time,
-          Number: row.Number && row.Number.trim() !== "" ? row.Number : "***",
-          Digit: row.Digit && row.Digit.trim() !== "" ? row.Digit : "*"
-        });
-        return acc;
-      }, {});
 
-      renderResults(groupedData);
-    })
-    .catch(err => console.error("Error fetching CSV:", err));
+  let allRows = []; // Store the fetched data here
+  const searchInput = document.getElementById("search-input");
+  
+  // Collapsible "How to Play" section
+  const collapsible = document.querySelector(".collapsible-button");
+  if (collapsible) {
+    collapsible.addEventListener("click", function() {
+      this.classList.toggle("active");
+      const content = this.nextElementSibling;
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  }
+
+  const resultTimes = [
+    "10:00 AM", "11:00 AM", "12:00 PM", "01:00 PM", "02:00 PM",
+    "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM",
+    "08:00 PM", "09:00 PM"
+  ];
+
+  function updateClock() {
+    const now = new Date();
+    const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+    const currentTimeElement = document.getElementById('current-time');
+    if(currentTimeElement) {
+      currentTimeElement.textContent = now.toLocaleDateString('en-US', options);
+    }
+
+    // Countdown to the next result
+    const nowTime = now.getHours() * 60 + now.getMinutes();
+    let nextResultTime = null;
+  
+    for (const timeStr of resultTimes) {
+      const [time, period] = timeStr.split(' ');
+      let [hours, minutes] = time.split(':').map(Number);
+  
+      if (period === 'PM' && hours !== 12) {
+        hours += 12;
+      }
+      if (period === 'AM' && hours === 12) {
+        hours = 0;
+      }
+  
+      const resultMinutes = hours * 60 + minutes;
+  
+      if (resultMinutes > nowTime) {
+        nextResultTime = resultMinutes;
+        break;
+      }
+    }
+    const countdownElement = document.getElementById('countdown');
+    if (countdownElement) {
+      if (nextResultTime) {
+        const timeRemaining = nextResultTime - nowTime;
+        const hours = Math.floor(timeRemaining / 60);
+        const minutes = timeRemaining % 60;
+        countdownElement.textContent = `Next Result in: ${hours}h ${minutes}m`;
+      } else {
+        countdownElement.textContent = "No more results for today.";
+      }
+    }
+  }
+
+  function fetchAndRenderData() {
+    fetch(csvFile)
+      .then(res => res.text())
+      .then(text => {
+        allRows = parseCSV(text);
+        filterAndRender();
+      })
+      .catch(err => console.error("Error fetching CSV:", err));
+  }
+
+  function filterAndRender() {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    let filteredRows = allRows;
+
+    if (searchTerm) {
+      filteredRows = allRows.filter(row => {
+        const number = row.Number && row.Number.trim().toLowerCase();
+        const digit = row.Digit && row.Digit.trim().toLowerCase();
+        return (number && number.includes(searchTerm)) || (digit && digit.includes(searchTerm));
+      });
+    }
+
+    const groupedData = filteredRows.reduce((acc, row) => {
+      const date = row.Date;
+      if (!acc[date]) {
+        acc[date] = [];
+      }
+      acc[date].push({
+        Time: row.Time,
+        Number: row.Number && row.Number.trim() !== "" ? row.Number : "***",
+        Digit: row.Digit && row.Digit.trim() !== "" ? row.Digit : "*"
+      });
+      return acc;
+    }, {});
+
+    renderResults(groupedData);
+  }
 
   // Simple CSV parser (expects first row as headers)
   function parseCSV(str) {
@@ -49,18 +133,16 @@ document.addEventListener("DOMContentLoaded", function () {
       if (groupedData.hasOwnProperty(date)) {
         const dailyData = groupedData[date];
 
-        // Create a new date-section for each day
         const dateSection = document.createElement("div");
         dateSection.classList.add("date-section");
 
         const dateHeader = document.createElement("h3");
         dateHeader.classList.add("date-header");
-        dateHeader.textContent = date; // You might need to add the day of the week here
+        dateHeader.textContent = date;
 
         const table = document.createElement("table");
         table.classList.add("result-table");
 
-        // Create table header (Time row)
         const timeRow = document.createElement("tr");
         timeRow.classList.add("timerow");
         dailyData.forEach(row => {
@@ -69,7 +151,6 @@ document.addEventListener("DOMContentLoaded", function () {
           timeRow.appendChild(th);
         });
 
-        // Create table body (Number & Digit row)
         const numberRow = document.createElement("tr");
         numberRow.classList.add("number-row");
         dailyData.forEach(row => {
@@ -78,7 +159,6 @@ document.addEventListener("DOMContentLoaded", function () {
           numberRow.appendChild(td);
         });
 
-        // Append rows to table and table to section
         const tbody = document.createElement("tbody");
         tbody.appendChild(timeRow);
         tbody.appendChild(numberRow);
@@ -86,9 +166,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
         dateSection.appendChild(dateHeader);
         dateSection.appendChild(table);
-
         container.appendChild(dateSection);
       }
     }
+    
+    // Find the last row of the last table and apply the new class for highlighting
+    const allTables = container.querySelectorAll('.result-table');
+    if (allTables.length > 0) {
+      const lastTable = allTables[allTables.length - 1];
+      const lastResultCell = lastTable.querySelector('tbody tr:last-child td:last-child');
+      if (lastResultCell) {
+        lastResultCell.classList.add('new-result');
+      }
+    }
   }
+
+  // Event listener for the search input
+  if (searchInput) {
+    searchInput.addEventListener('input', filterAndRender);
+  }
+
+  // Initial call to fetch data on page load
+  fetchAndRenderData();
+
+  // Set up the interval to fetch and render data every 30 seconds
+  setInterval(fetchAndRenderData, 30000);
+
+  // Initial call to update clock
+  updateClock();
+  
+  // Update the clock every second
+  setInterval(updateClock, 1000);
 });

@@ -20,7 +20,6 @@
   --border-color: #b8b8b8;
 }
 
-/* ===== Dark Mode Variables ===== */
 /* ===== Dark Mode Variables (More Vibrant) ===== */
 @media (prefers-color-scheme: dark) {
   :root {
@@ -145,6 +144,27 @@ html, body {
   margin: 5px 8px;
 }
 
+/* ===== Live Clock Styles ===== */
+.live-clock {
+  text-align: center;
+  margin: 10px 8px;
+  font-weight: bold;
+  font-size: 1.2em;
+  background: var(--date-header-bg);
+  color: #fff;
+  padding: 8px 0;
+  border-radius: 10px;
+}
+
+#current-time {
+  margin-bottom: 5px;
+}
+
+#countdown {
+  font-size: 0.9em;
+  font-style: italic;
+}
+
 /* ===== Info Bar ===== */
 .infobar {
   background: var(--infobar-bg);
@@ -156,6 +176,60 @@ html, body {
   border: 3px solid red;
   border-radius: 10px;
   margin: 5px 8px;
+}
+
+/* ===== Search Section Styles ===== */
+.search-section {
+  text-align: center;
+  margin: 10px 8px;
+}
+
+#search-input {
+  width: 90%;
+  max-width: 330px;
+  padding: 10px;
+  font-size: 1em;
+  border: 2px solid var(--border-color);
+  border-radius: 5px;
+  background-color: var(--table-bg);
+  color: var(--text-color);
+}
+
+/* ===== How-to-Play Section Styles ===== */
+.info-section {
+  margin: 10px 8px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.collapsible-button {
+  background-color: var(--bluebox-bg);
+  color: #fff;
+  cursor: pointer;
+  padding: 12px;
+  width: 100%;
+  border: 3px solid var(--bluebox-border);
+  border-radius: 10px;
+  text-align: center;
+  outline: none;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.content {
+  padding: 0 18px;
+  background-color: var(--table-bg);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  border: 1px solid var(--border-color);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+}
+
+.content p, .content ul {
+  color: var(--text-color);
 }
 
 /* ===== Results Table ===== */
@@ -289,4 +363,15 @@ html, body {
 .loading-logo {
   max-width: 150px;
   height: auto;
+}
+
+/* ===== New Result Highlight Animation ===== */
+@keyframes fadeInHighlight {
+  0% { background-color: transparent; }
+  50% { background-color: var(--table-header-bg); } /* Use a CSS variable for the highlight color */
+  100% { background-color: transparent; }
+}
+
+.new-result {
+  animation: fadeInHighlight 3s ease-out;
 }
