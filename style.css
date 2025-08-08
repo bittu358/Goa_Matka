@@ -15,39 +15,34 @@ body {
   border-radius: 0 0 10px 10px;
 }
 
-.logo-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ===== Logo Container ===== */
+.logo-container {
+  text-align: center;
+  margin: 10px 0;
 }
 
-.horse {
-  height: 70px;
-  margin: 0 15px;
+.trimmed-logo {
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  background-color: transparent;
+  padding: 0;
 }
 
-.horse.reverse {
-  transform: scaleX(-1);
+/* Main horse logo */
+.main-logo {
+  width: 100%;
+  max-width: 750px;
+  height: auto;
+  clip-path: inset(3% 6% 3% 6%); /* trim white space */
 }
 
-.logo-text {
-  font-size: 2.4em;
-  color: #319c41;
-  font-weight: bold;
-  letter-spacing: 3px;
-}
-
-.logo-palm {
-  font-size: 1.1em;
-  color: #f9b039;
-  margin: 0 4px;
-}
-
-.subtitle {
-  color: #d32f2f;
-  font-size: 1.2em;
-  margin-top: -8px;
-  font-weight: bold;
+/* Golden logo below */
+.golden-logo {
+  width: 60%; /* smaller size */
+  max-width: 400px;
+  margin-top: 8px;
+  clip-path: inset(6% 10% 6% 10%); /* tighter crop */
 }
 
 /* ===== Yellow Banner (Scrolling) ===== */
@@ -57,8 +52,8 @@ body {
   border-radius: 10px;
   margin: 5px 8px;
   padding: 6px 0;
-  overflow: hidden;      /* Hide overflow */
-  white-space: nowrap;   /* Keep text in one line */
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .scroll-text {
@@ -67,17 +62,13 @@ body {
   font-style: italic;
   color: red;
   font-weight: bold;
-  padding-left: 100%;    /* Start fully off-screen on right */
-  animation: scroll-left 8s linear infinite; /* Faster scroll */
+  padding-left: 100%;
+  animation: scroll-left 8s linear infinite;
 }
 
 @keyframes scroll-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 }
 
 /* ===== Live Result Box ===== */
@@ -168,23 +159,17 @@ body {
 
 /* ===== Mobile View ===== */
 @media (max-width: 768px) {
-  .logo-row {
-    flex-direction: column;
+  .logo-container {
+    margin: 8px 0;
   }
 
-  .horse {
-    height: 50px;
-    margin: 10px 0;
+  .main-logo {
+    max-width: 500px;
   }
 
-  .logo-text {
-    font-size: 1.6em;
-    letter-spacing: 2px;
-  }
-
-  .subtitle {
-    font-size: 1em;
-    margin-top: 0;
+  .golden-logo {
+    width: 70%;
+    max-width: 320px;
   }
 
   .yellow-banner,
@@ -222,18 +207,90 @@ body {
     font-size: 0.75em;
   }
 }
-.logo-container {
-  text-align: center;
-  margin: 10px 0;
+/* ===== Logo sizing update: horse ~+60%, golden ~+30% ===== */
+
+/* prevent horizontal scroll from large images */
+html, body {
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
-.trimmed-logo {
-  width: 100%;
-  max-width: 800px;
-  height: auto;
-  margin-top: 10px;
+/* container */
+.logo-container {
+  text-align: center;
+  margin: 8px 0;
   padding: 0;
-  object-fit: contain;
+}
+
+/* base logo rules */
+.trimmed-logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
   background-color: transparent;
-  clip-path: inset(5% 8% 5% 8%); /* trims top, right, bottom, left */
+  object-fit: contain;
+  box-sizing: border-box;
+}
+
+/* HORSE (main) logo — ~60% larger */
+.main-logo {
+  width: 78%;            /* larger visible presence */
+  max-width: 900px;      /* cap so it doesn't blow out on big screens */
+  height: auto;
+  max-height: 45vh;      /* keeps it from pushing content too far down */
+  margin-top: 8px;
+  margin-bottom: 6px;
+  clip-path: inset(3% 5% 3% 5%);    /* trims white border gently */
+  -webkit-clip-path: inset(3% 5% 3% 5%);
+}
+
+/* GOLDEN logo — ~30% larger */
+.golden-logo {
+  width: 52%;            /* moderately larger */
+  max-width: 520px;
+  height: auto;
+  max-height: 22vh;
+  margin-top: -30px;     /* negative to keep a small overlap; reduce if too strong */
+  margin-bottom: 6px;
+  clip-path: inset(4% 8% 4% 8%);   /* tighter crop for white edges */
+  -webkit-clip-path: inset(4% 8% 4% 8%);
+}
+
+/* If overlap is too heavy, add class="logo-container overlap-less" to HTML to reduce pull-up */
+.logo-container.overlap-less .golden-logo {
+  margin-top: -12px;
+}
+
+/* ===== Responsive adjustments ===== */
+@media (max-width: 768px) {
+  .main-logo {
+    width: 86%;
+    max-width: 640px;
+    max-height: 38vh;
+    clip-path: inset(3.5% 6% 3.5% 6%);
+    -webkit-clip-path: inset(3.5% 6% 3.5% 6%);
+  }
+
+  .golden-logo {
+    width: 68%;
+    max-width: 420px;
+    max-height: 18vh;
+    margin-top: -22px;
+    clip-path: inset(5% 9% 5% 9%);
+    -webkit-clip-path: inset(5% 9% 5% 9%);
+  }
+}
+
+@media (max-width: 420px) {
+  .main-logo {
+    width: 92%;
+    max-height: 30vh;
+  }
+
+  .golden-logo {
+    width: 78%;
+    max-height: 16vh;
+    margin-top: -12px;
+  }
 }
