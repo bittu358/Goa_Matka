@@ -222,3 +222,18 @@ body {
     font-size: 0.75em;
   }
 }
+.logo-container {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.trimmed-logo {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  margin-top: 10px;
+  padding: 0;
+  object-fit: contain;
+  background-color: transparent;
+  clip-path: inset(5% 8% 5% 8%); /* trims top, right, bottom, left */
+}
