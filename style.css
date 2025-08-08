@@ -23,7 +23,7 @@ html, body {
 
 /* Smaller horse logo */
 .horse-logo-main {
-  width: 40%;   /* reduced from 80% */
+  width: 80%;   /* reduced from 80% */
   max-width: 1500px;
   height: auto;
   display: block;
@@ -32,7 +32,7 @@ html, body {
 
 /* Smaller golden logo below */
 .golden-logo-below {
-  width: 30%;   /* reduced from 60% */
+  width: 60%;   /* reduced from 60% */
   max-width: 1000px;
   height: auto;
   display: block;
