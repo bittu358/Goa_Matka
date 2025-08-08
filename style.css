@@ -233,15 +233,15 @@ html, body {
   box-sizing: border-box;
 }
 
-/* HORSE (main) logo — ~60% larger */
+/* HORSE (main) logo — increased size */
 .main-logo {
-  width: 78%;            /* larger visible presence */
-  max-width: 900px;      /* cap so it doesn't blow out on big screens */
+  width: 105%;            /* bigger presence */
+  max-width: 1500px;     /* allow more room on large screens */
   height: auto;
-  max-height: 45vh;      /* keeps it from pushing content too far down */
-  margin-top: 8px;
-  margin-bottom: 6px;
-  clip-path: inset(3% 5% 3% 5%);    /* trims white border gently */
+  max-height: 75vh;
+  margin-top: 15px;
+  margin-bottom: 9px;
+  clip-path: inset(3% 5% 3% 5%);
   -webkit-clip-path: inset(3% 5% 3% 5%);
 }
 
