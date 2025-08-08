@@ -1,6 +1,61 @@
+/* ===== Base Variables (Light Mode Defaults) ===== */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --header-bg: #e7e9ed;
+  --header-text: #ffffff;
+  --yellow-banner-bg: #ffff4d;
+  --yellow-banner-text: red;
+  --bluebox-bg: #7c97e8;
+  --bluebox-border: blue;
+  --infobar-bg: #c3e1f0;
+  --infobar-text: #2b2b2b;
+  --date-bg: #111311;
+  --date-header-bg: #388e3c;
+  --table-bg: #ffffff;
+  --table-text: #000000;
+  --table-alt-bg: #f9fcf9;
+  --table-header-bg: #fff95d;
+  --table-header-text: #222;
+  --border-color: #b8b8b8;
+}
+
+/* ===== Dark Mode Variables ===== */
+/* ===== Dark Mode Variables (More Vibrant) ===== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #0d0d0d;
+    --text-color: #f5f5f5;
+    --header-bg: #1a1f2e; /* Deep navy */
+    --header-text: #ffffff;
+
+    --yellow-banner-bg: #ffd900; /* Strong golden yellow */
+    --yellow-banner-text: #ff3030; /* Vivid warm red */
+
+    --bluebox-bg: #2979ff; /* Bright blue */
+    --bluebox-border: #004cff; /* Stronger blue border */
+
+    --infobar-bg: #003c5f; /* Rich teal-blue */
+    --infobar-text: #ffffff;
+
+    --date-bg: #151515;
+    --date-header-bg: #00b34a; /* Bright emerald green */
+
+    --table-bg: #1c1c1c;
+    --table-text: #f0f0f0;
+    --table-alt-bg: #262626;
+
+    --table-header-bg: #ffeb3b; /* Vibrant yellow */
+    --table-header-text: #000000;
+
+    --border-color: #666666;
+  }
+}
+
 /* ===== Base Styles ===== */
 body {
-  background: #ffffff;
+  background: var(--bg-color);
+  color: var(--text-color);
   font-family: 'Open Sans', Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -14,31 +69,28 @@ html, body {
 /* ===== Logo Header ===== */
 .logo-header {
   text-align: center;
-  background: #e7e9ed; /* Blue background to match the Live Result box */
-  color: #ffffff;      /* White text color */
+  background: var(--header-bg);
+  color: var(--header-text);
   font-style: italic;
   font-weight: bold;
-  font-size: 1.5em;    /* Font size to match */
+  font-size: 1.5em;
   padding: 10px 0;
   border: 3px solid rgb(240, 240, 250);
   border-radius: 10px;
-  margin: 5px 8px;
+  margin: 5px auto;
   max-width: 480px;
-  margin: 0 auto;
 }
 
-/* Logo image styling - This can be kept or removed depending on your preference */
 .custom-logo-main {
   width: 80%;
   max-width: 300px;
   height: auto;
   display: block;
-  margin: 0 auto 5px; /* Adds space below the logo */
+  margin: 0 auto 5px;
 }
 
-/* New styling for the text to match the blue box */
 .logo-text {
-  color: #ffffff;
+  color: var(--header-text);
   font-weight: bold;
   font-size: 1.5em;
   margin: 0;
@@ -46,7 +98,7 @@ html, body {
 }
 
 .subtext {
-  color: #ffffff; /* Change subtext to white */
+  color: var(--header-text);
   font-weight: 700;
   font-size: 14px;
   font-family: "Arial Black", Arial, sans-serif;
@@ -55,7 +107,7 @@ html, body {
 
 /* ===== Yellow Banner (Scrolling) ===== */
 .yellow-banner {
-  background: #ffff4d;
+  background: var(--yellow-banner-bg);
   border: 3px double red;
   border-radius: 10px;
   margin: 5px 8px;
@@ -68,7 +120,7 @@ html, body {
   display: inline-block;
   font-size: 1.3em;
   font-style: italic;
-  color: red;
+  color: var(--yellow-banner-text);
   font-weight: bold;
   padding-left: 100%;
   animation: scroll-left 8s linear infinite;
@@ -81,22 +133,22 @@ html, body {
 
 /* ===== Live Result Box ===== */
 .bluebox {
-  background: #7c97e8;
+  background: var(--bluebox-bg);
   color: #ffffff;
   text-align: center;
   font-size: 1.5em;
   font-weight: bold;
   padding: 10px 0;
   font-style: italic;
-  border: 3px solid blue;
+  border: 3px solid var(--bluebox-border);
   border-radius: 10px;
   margin: 5px 8px;
 }
 
 /* ===== Info Bar ===== */
 .infobar {
-  background: #c3e1f0;
-  color: #2b2b2b;
+  background: var(--infobar-bg);
+  color: var(--infobar-text);
   text-align: center;
   padding: 8px 0;
   font-size: 1.2em;
@@ -107,18 +159,13 @@ html, body {
 }
 
 /* ===== Results Table ===== */
-/* ===== Results Table ===== */
-/* ===== Results Table ===== */
-/* ===== Results Table ===== */
-/* ===== Results Table ===== */
 .date-section {
-  background: #111311;
-  color: #fff;
+  background: var(--date-bg);
+  color: var(--text-color);
   margin-top: 13px;
   border-radius: 2px;
-  box-shadow: 0 2px 6px #b9e7bc44;
+  box-shadow: 0 2px 6px #00000044;
   overflow: hidden;
-  /* New styles to make the box smaller */
   max-width: 350px;
   margin-left: auto;
   margin-right: auto;
@@ -129,7 +176,7 @@ html, body {
   text-align: center;
   padding: 10px 0;
   margin: 0;
-  background: #388e3c;
+  background: var(--date-header-bg);
   color: #fff;
   font-weight: bold;
   letter-spacing: 1px;
@@ -138,43 +185,43 @@ html, body {
 .result-table {
   width: 100%;
   border-collapse: collapse;
-  background: #fff;
-  color: #333;
+  background: var(--table-bg);
+  color: var(--table-text);
   font-size: 1.05em;
   margin-bottom: 7px;
 }
 
 .timerow th {
-  background: #fff95d;
-  color: #222;
+  background: var(--table-header-bg);
+  color: var(--table-header-text);
   font-weight: bold;
   font-size: 1em;
   padding: 5px 0;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
 }
 
 .number-row td {
-  background: #ffffff;
-  color: #000;
+  background: var(--table-bg);
+  color: var(--table-text);
   font-size: 1.15em;
   font-weight: bold;
 }
 
 .digit-row td {
-  background: #f9fcf9;
-  color: #0a0b0a;
+  background: var(--table-alt-bg);
+  color: var(--table-text);
   font-size: 1em;
   font-weight: bold;
 }
 
 .result-table th,
 .result-table td {
-  border: 1px solid #b8b8b8;
+  border: 1px solid var(--border-color);
   padding: 8px 6px;
   text-align: center;
 }
 
-/* Responsive adjustments for smaller screens */
+/* ===== Responsive Adjustments ===== */
 @media (max-width: 480px) {
   .date-section {
     max-width: 100%;
@@ -191,7 +238,7 @@ html, body {
     font-size: 0.9em;
   }
 }
-/* ===== Responsive ===== */
+
 @media (max-width: 768px) {
   .custom-logo-main {
     width: 85%;
@@ -232,13 +279,14 @@ html, body {
     max-width: 280px;
   }
 }
-/* Add this new section to your style.css file */
+
+/* ===== Loading Logo ===== */
 .loading-logo-container {
-    text-align: center;
-    margin: 10px 0;
+  text-align: center;
+  margin: 10px 0;
 }
 
 .loading-logo {
-    max-width: 150px; /* Adjust the size as needed */
-    height: auto;
+  max-width: 150px;
+  height: auto;
 }
