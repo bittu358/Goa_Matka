@@ -1,3 +1,4 @@
+/* ===== Base Styles ===== */
 body {
   background: #ffffff;
   font-family: 'Open Sans', Arial, sans-serif;
@@ -5,7 +6,7 @@ body {
   padding: 0;
 }
 
-/* Header */
+/* ===== Header ===== */
 .header {
   background: #fff;
   border: 3px solid red;
@@ -49,26 +50,37 @@ body {
   font-weight: bold;
 }
 
-/* Yellow Banner */
+/* ===== Yellow Banner (Scrolling) ===== */
 .yellow-banner {
   background: #ffff4d;
   border: 3px double red;
   border-radius: 10px;
   margin: 5px 8px;
-  padding: 5px 10px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  padding: 6px 0;
+  overflow: hidden;      /* Hide overflow */
+  white-space: nowrap;   /* Keep text in one line */
 }
 
-.welcome-text {
-  font-size: 1.2em;
+.scroll-text {
+  display: inline-block;
+  font-size: 1.3em;
   font-style: italic;
   color: red;
   font-weight: bold;
+  padding-left: 100%;    /* Start fully off-screen on right */
+  animation: scroll-left 8s linear infinite; /* Faster scroll */
 }
 
-/* Live Result Box */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* ===== Live Result Box ===== */
 .bluebox {
   background: #7c97e8;
   color: #ffffff;
@@ -82,7 +94,7 @@ body {
   margin: 5px 8px;
 }
 
-/* Info Bar */
+/* ===== Info Bar ===== */
 .infobar {
   background: #c3e1f0;
   color: #2b2b2b;
@@ -95,7 +107,7 @@ body {
   margin: 5px 8px;
 }
 
-/* Results */
+/* ===== Results Table ===== */
 .date-section {
   background: #4caf50;
   color: #fff;
@@ -153,16 +165,8 @@ body {
   padding: 8px 6px;
   text-align: center;
 }
-.scroll-text {
-  display: inline-block;
-  white-space: nowrap;
-  font-size: 1.2em;
-  font-style: italic;
-  color: red;
-  font-weight: bold;
-  animation: scroll-left 12s linear infinite;
-}
 
+/* ===== Mobile View ===== */
 @media (max-width: 768px) {
   .logo-row {
     flex-direction: column;
@@ -201,7 +205,7 @@ body {
   }
 
   .result-table {
-    font-size: 0.75em; /* Shrinks entire table */
+    font-size: 0.75em;
   }
 
   .timerow th,
