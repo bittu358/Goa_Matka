@@ -3,7 +3,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   const csvFile = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSWT5c0Ny9m7CSPhv5Y6gRpqL6l9GRul4KXKNELYRp0AK-GflTPbAMZ0_FqjrQdLsFudsoRE5mhP22d/pub?output=csv";
 
-// ===== Replace with your own published Google Sheet CSV lin
+// ===== Replace with your own published Google Sheet CSV link
+
 
 
   let allRows = []; // Store the fetched data here
@@ -25,9 +26,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const resultTimes = [
     "10:00 AM", "11:00 AM", "12:00 PM", "01:00 PM", "02:00 PM",
-    "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM",
-    "08:00 PM", "09:00 PM"
+    "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM"
   ];
+  
+  function getNextResultTime() {
+    const now = new Date();
+    const nowTime = now.getHours() * 60 + now.getMinutes();
+    const today = now.getDate();
+
+    for (const timeStr of resultTimes) {
+        const [time, period] = timeStr.split(' ');
+        let [hours, minutes] = time.split(':').map(Number);
+    
+        if (period === 'PM' && hours !== 12) {
+          hours += 12;
+        }
+        if (period === 'AM' && hours === 12) {
+          hours = 0;
+        }
+    
+        const resultMinutes = hours * 60 + minutes;
+
+        // Found a result time that is still in the future for today
+        if (resultMinutes > nowTime) {
+          return new Date(now.getFullYear(), now.getMonth(), today, hours, minutes);
+        }
+    }
+    
+    // No more results for today. Set time for tomorrow at 10 AM.
+    const tomorrow = new Date(now);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(10, 0, 0, 0); // 10:00 AM
+    return tomorrow;
+  }
 
   function updateClock() {
     const now = new Date();
@@ -37,37 +68,20 @@ document.addEventListener("DOMContentLoaded", function () {
       currentTimeElement.textContent = now.toLocaleDateString('en-US', options);
     }
 
-    // Countdown to the next result
-    const nowTime = now.getHours() * 60 + now.getMinutes();
-    let nextResultTime = null;
-  
-    for (const timeStr of resultTimes) {
-      const [time, period] = timeStr.split(' ');
-      let [hours, minutes] = time.split(':').map(Number);
-  
-      if (period === 'PM' && hours !== 12) {
-        hours += 12;
-      }
-      if (period === 'AM' && hours === 12) {
-        hours = 0;
-      }
-  
-      const resultMinutes = hours * 60 + minutes;
-  
-      if (resultMinutes > nowTime) {
-        nextResultTime = resultMinutes;
-        break;
-      }
-    }
     const countdownElement = document.getElementById('countdown');
     if (countdownElement) {
-      if (nextResultTime) {
-        const timeRemaining = nextResultTime - nowTime;
-        const hours = Math.floor(timeRemaining / 60);
-        const minutes = timeRemaining % 60;
-        countdownElement.textContent = `Next Result in: ${hours}h ${minutes}m`;
+      const nextResult = getNextResultTime();
+      
+      // If the current date is different from the next result date, it means we're waiting for tomorrow
+      if (now.getDate() !== nextResult.getDate()) {
+        countdownElement.textContent = "Results closed for today. Resuming tomorrow at 10 AM.";
       } else {
-        countdownElement.textContent = "No more results for today.";
+        const timeRemainingMs = nextResult.getTime() - now.getTime();
+        const hours = Math.floor(timeRemainingMs / (1000 * 60 * 60));
+        const minutes = Math.floor((timeRemainingMs % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeRemainingMs % (1000 * 60)) / 1000);
+        
+        countdownElement.textContent = `Next Result in: ${hours}h ${minutes}m ${seconds}s`;
       }
     }
   }
