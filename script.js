@@ -1,7 +1,7 @@
 // ===== Replace with your own published Google Sheet CSV lin
 
 document.addEventListener("DOMContentLoaded", function () {
-  const csvFile = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTRagEtBc6K8tEBZgukYCTyFWUlip_8JYWGMm4XXblRk8HJgcDrGkA21N6uDVKzfwgnKTeLjUMfPRsK/pub?gid=0&single=true&output=csv";
+  const csvFile = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTRagEtBc6K8tEBZgukYCTyFWUlip_8JYWGMm4XXblRk8HJgcDrGkA21N6uDVKzfwgnKTeLjUMfPRsK/pub?output=csv";
 
 // ===== Replace with your own published Google Sheet CSV link
 
